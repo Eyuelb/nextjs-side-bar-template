@@ -1,0 +1,42 @@
+:root {
+  --primary-color: #FF9900;
+  --primary-color-dark: color-mix(in srgb, var(--primary-color), black 10%);
+  --primary-color-light: color-mix(in srgb, var(--primary-color), rgba(255, 255, 255, 0.352) 70%);
+
+  --root-bg: #fff;
+  --root-text-color: #333333;
+
+  --header-bg: #fff;
+
+  
+
+  --sidebar-bg: #fff;
+  --sidebar-width: 275px;
+  --sidebar-mobile-width: 275px;
+
+  --link-color: #333333; /* Default link text color */
+  --link-color-active: var(--root-text-color); /* Default active link color */
+  --link-bg: #ffffff; /* Default link background color */
+  --link-bg-hover: #91c8ff64; /* Default link hover background color */
+  --link-bg-active: var(--primary-color-light); /* Default link active background color */
+  --link-font-size: 14px; /* Default text size for links */
+  --link-font-weight: 500;
+
+  --link-child-color: #333333; /* Default link text color */
+  --link-child-color-active: #6b46c1; /* Default active link color */
+  --link-child-bg: #ffffff; /* Default link background color */
+  --link-child-bg-hover: #edf2f7; /* Default link hover background color */
+  --link-child-bg-active: #d1d5db; /* Default link active background color */
+  --link-child-font-size: 14px; /* Default text size for links */
+  --link-child-font-weight: 400;
+
+  --link-icon-width: 30px; /* Default width of the link icon */
+  --link-icon-height: 30px; /* Default height of the link icon */
+  --link-icon-color: #333333; /* Default color of the link icon */
+  --link-icon-bg: var(--primary-color-light);
+  --link-icon-radius: 50%;
+  --link-icon-padding: 5px;
+
+
+  --card-bg: #fff;
+}

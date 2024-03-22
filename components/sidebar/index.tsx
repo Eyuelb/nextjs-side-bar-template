@@ -2,7 +2,6 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
-
   CalendarIcon,
   ChartPieIcon,
   DocumentDuplicateIcon,
@@ -18,7 +17,16 @@ interface SidebarProps {
 }
 
 const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+  {
+    name: "Dashboard",
+    icon: HomeIcon,
+    current: true,
+    links: [
+      { name: "Team", href: "#", current: false },
+      { name: "Projects", href: "#", current: false },
+      { name: "Calendar", href: "#", current: false },
+    ],
+  },
   { name: "Team", href: "#", icon: UsersIcon, current: false },
   { name: "Projects", href: "#", icon: FolderIcon, current: false },
   { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
@@ -28,7 +36,7 @@ const navigation = [
 
 const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
   return (
-    <div>
+    <aside className="bg-[var(--sidebar-bg)] border-l ">
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -44,10 +52,10 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-900/80" />
+            <div className="fixed inset-0 bg-gray-900/10 " />
           </Transition.Child>
 
-          <div className="fixed inset-0 flex">
+          <div className="fixed inset-0 flex backdrop-blur-[8px]">
             <Transition.Child
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
@@ -57,33 +65,10 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-in-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in-out duration-300"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                    <button
-                      type="button"
-                      className="-m-2.5 p-2.5"
-                      onClick={() => setSidebarOpen(false)}
-                    >
-                      <span className="sr-only">Close sidebar</span>
-                      <XMarkIcon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
-                    </button>
-                  </div>
-                </Transition.Child>
+              <Dialog.Panel className="relative mr-16 flex bg-[var(--sidebar-bg)] max-w-[var(--sidebar-width)] flex-1">
                 {/* Sidebar component, swap this element with another sidebar if you like */}
-                <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
-                  <NavHeader />
+                <div className="flex grow flex-col gap-y-5 overflow-y-auto px-4 ">
+                  <NavHeader setSidebarOpen={setSidebarOpen} />
                   <NavList navigation={navigation} />
                 </div>
               </Dialog.Panel>
@@ -91,13 +76,13 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
           </div>
         </Dialog>
       </Transition.Root>
-      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-[var(--sidebar-width)] lg:flex-col bg-[var(--sidebar-bg)] border">
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto px-4">
           <NavHeader />
           <NavList navigation={navigation} />
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

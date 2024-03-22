@@ -1,8 +1,9 @@
-
-import AppShell from "../components/app-shell";
-
 export default function Home() {
   return (
-    <AppShell/>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <div>
+      NextJs
+      </div>
+    </main>
   );
 }
